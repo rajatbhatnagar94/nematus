@@ -54,12 +54,11 @@ class RNNModel(object):
         dropout_embedding, dropout_hidden = None, None
         if config.rnn_use_dropout and config.rnn_dropout_embedding > 0.0:
             def dropout_embedding(e):
-                return tf.layers.dropout(e, noise_shape=tf.shape(e),
-                                         rate=config.rnn_dropout_embedding,
+                return tf.layers.dropout(e, rate=config.rnn_dropout_embedding,
                                          training=self.inputs.training)
         if config.rnn_use_dropout and config.rnn_dropout_hidden > 0.0:
             def dropout_hidden(h):
-                return tf.layers.dropout(h, noise_shape=tf.shape(h),
+                return tf.layers.dropout(h,
                                          rate=config.rnn_dropout_hidden,
                                          training=self.inputs.training)
 
